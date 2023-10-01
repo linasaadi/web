@@ -1,0 +1,34 @@
+{#calcule somme #}
+{% set s = 0 %}
+{% for k in auteurs %}
+{% set s = s+k.nb_books %}    
+{% endfor %}
+
+<h1> la list des auteur </h1>
+
+<table border=1px> 
+    <tr> 
+        <th> id </th>
+        <th> userName </th>
+        <th> Image </th>
+        <th> nbr group </th>
+        <th>details</th>
+
+    </tr>
+    {%  for i in auteurs %}
+    <tr> 
+        <td>{{i.id }}</td>
+        <td>{{i.username |upper  }}</td>
+        <td><img src="{{i.picture }}" width = "100" </td>
+        <td>{{i.nb_books}}</td>
+        <td> <form action = "{{path ('detailA',{'i':i.id,'n':i.nb_books})     
+        }}"> <button> details !</button></form></td>
+        {# 2eme methode #}
+       {# <td><a href="{{path ('detailA',{'i':i.id,'n':i.nb_books})}}">dtails</a></td>#}
+    </tr>
+    {% endfor %}
+    
+</table>
+<h2> le nombre de auteur est {{auteurs|length }} </h2>
+<h3> le nombre de livre est {{s}} </h3>
+
